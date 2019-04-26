@@ -1,0 +1,93 @@
+.sidenav {
+  top: 0px;
+  left: 0px;
+  background: #eee;
+  padding: 8px 0;
+  width:20%;
+  text-align:center;
+  display:table-cell;
+  height:100%;
+}
+
+.main {
+  /*font-size: 28px; /* Increased text to enable scrolling */
+  width:80%;
+  text-align:center;
+  display:table-cell;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	display:table;
+	width:100%;
+	height:100%;
+}
+
+
+.footer {
+  bottom: 0;
+  left:20%;
+  right:0;
+ /* border: 1px solid;*/
+  position:absolute;
+  margin: 0 auto;
+}
+
+.topper{
+/*border: 1px solid;*/
+width:100%;
+top:0;
+margin-bottom:2%;
+}
+
+form{
+	/*border: 1px solid;*/
+	width:70%;
+	margin: 0 auto;
+	margin-bottom:2%;
+}
+
+
+label {
+  display: inline-block;
+  text-align: right;
+}​
+
+#puzzleOptions{
+/*border: 1px solid;*/
+width:70%;
+border: 0px solid;
+}
+
+#stats{
+	/*border: 1px solid;*/
+	width:70%;
+	margin: 0 auto;
+	margin-bottom:2%;
+	height:10%;
+}
+
+#puzzleContainer{;/*border:1px solid red;*/margin-left:auto;margin-right:auto;display:inline-block;}
+#game{/*border:1px solid blue;*/ display:inline-block;;width:50%;}
+
+
+#play{
+  width:50%;
+  background-color: LawnGreen ;
+}
+#stats{
+  margin-top:10%;
+  margin-bottom:10%;
+  border:2px solid blue;
+  text-align: center;
+}
+
+
+#stats td{
+  border:1px solid green;
+}

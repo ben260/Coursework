@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>Sudoku Online</title>
+<!-- Stylesheets -->
+  <link rel="stylesheet" href="/stylesheets/sudoku.css"></link>
+  <link rel="stylesheet" href="/stylesheets/index.css"></link>
+<!-- Client-side JavaScript -->
+
+<!-- JavaScript file containing web component -->
+  <script src="/scripts/login.js"></script>
+  <script src="/scripts/puzzle.js"></script>
+  <script src="/scripts/gamecontroller.js"></script>
+  <script src="/scripts/playbutton.js"></script>
+  <script src="/scripts/statsview.js"></script>
+</head>
+
+<!-- Body -->
+<body>
+
+<!-- Sidebar -->
+<div class="sidenav">
+
+<h1 id="welcomemsg">Welcome!</h1>
+
+<!-- User Login --->
+<form is="login-form" id='login'>
+  <p>Login or signup</p>
+  <label>Username</label>
+  <input type="text"  name='username' minlength="6" maxlength="15" value="sudokuguy26"/>
+  <label>Password</label>
+  <input type="password"  minlength="6" maxlength="15" name='password' value="soup4ever"/><br>
+  <input type="radio" name="option" value="login" checked> Login</input><input type="radio" name="option" value="signup"> Signup</input><br><br>
+  <input type="submit" value="Submit">
+</form>
+<!-- End of User Login -->
+
+
+<!--  Table to show user statistics. -->
+<table is='view-stats' id="stats"></table>
+
+</div>
+<!-- End of Sidebar -->
+
+<!-- Main container -->
+<div class="main">
+	<div class="topper">
+		<h1>Sudoku Online</h1>
+	</div>
+
+	<div is="game-view" id="game">
+		<div id="gameDetails"><div id="puzzleNumber">Login to play</div><div id="puzzleTime"></div></div>
+		<table is="sudoku-puzzle" id="puzzle"></table>
+    <button is="play-button" id="play">Start new puzzle</button>
+	</div>
+
+
+
+	<div class="footer">
+		<h2>Ben Harris AQA A-Level Computer Science Coursework 2018/19</h2>
+	</div>
+</div>
+<!-- End of main container -->
+</body>
+
+<script>
+
+// Sudoku Puzzle custom web component.
+customElements.define("sudoku-puzzle", Puzzle,{ extends: 'table' });
+// Extend the table to have extra features.
+customElements.define("view-stats", Stats,{ extends: 'table' });
+// Custom web components.
+customElements.define("login-form", Login,{ extends: 'form' });
+customElements.define("game-view", GameController,{ extends: 'div' });
+customElements.define("play-button", PlayButton,{ extends: 'button' });
+
+
+// global function to make http request...
+function httpRequest(method,data,success)
+{
+
+  // The XHR object
+  const xhr = new XMLHttpRequest();
+
+  // When there's an update to the request status.
+  xhr.onreadystatechange = () =>
+  {
+    if(xhr.readyState==XMLHttpRequest.DONE)
+    {
+      if(xhr.status==200){success(xhr.responseText);}
+      else{alert(xhr.responseText)}
+    }
+  }
+
+  // If there's an error.
+  xhr.onerror = () => alert("Server Error");
+
+  // If it's a get request then the data needs to be sent as a link.
+  if(method=='get'){
+    xhr.open(method,data,true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send();
+  }
+  // Otherwise it's a post request.
+  else{
+    xhr.open(method,"../..server.js",true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(JSON.stringify(data));
+  }
+}
+
+</script>
+</html>
